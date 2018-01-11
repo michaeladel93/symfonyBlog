@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+{% block title  %}
+    {{post.postTitle}}
+    {% endblock %}
+{% block body  %}
+    
+      <div class="container">
+         
+      
+        <div class="row">
+        <div class="col-sm-8"><! --mainbolg-- >
+
+           
+            <div class="blogpost thumbnail">
+                         
+			<img class="img-responsive img-rounded"src="{{asset('upload/' ~ post.postImg)}}" >
+			
+                <div class="caption">
+			<h1 id="heading"> {{post.postTitle}}</h1>
+		<p class="description">Category:{{post.postDetails}} &nbsp; Published on
+		{{post.postDate}}
+		</p>
+        <p class="post"> 
+                  {{ post.postData|nl2br  }}</p>
+		
+		</div>
+                
+            </div> 
+                  <br>
+            <div id='commentdiv'>
+                {%for comment in comments %}<div class="CommentBlock"><! --comment area-- >
+                         
+                         <p style="margin-left: 90px;" class="Comment-info">{{comment.commentedBy}}</p>  
+                         <p style="margin-left: 90px;" class="description">{{comment.commentDate}}</p> 
+                         <p style="margin-left: 90px;" class="Comment">{{comment.comment}}</p> 
+                     </div><! --comment area-- >
+                     {% endfor %}
+                     </div><! --commentdiv-- >
+        <br> <samp class="FieldInfo"> Share Your Comments about this post</samp>
+            <form action="/symfonyBlog/web/app_dev.php/Blog/fullpost/commentsubmit/{{post.id}}" method="post" >
+            <fieldset>
+                <div class="form-group">
+                <label for="name"><span class="FieldInfo">Name: </span></label>
+                <input class="form-control" type="text" name="Name" id="name" placeholder="Name:">
+                    </div>
+              
+             
+                <div class="form-group">
+                <label for="postarea"><span class="FieldInfo">Your Comment: </span></label>
+             <textarea class="form-control" name="Comment" id="postarea"></textarea>
+                    </div>
+                
+                <input class="btn btn-primary " type="submit" name="Submit" value="Comment">
+                <br>
+                </fieldset>
+            </form>
+        </div>
+              <br>  
+           
+                     
+
+  <a style="float: left;" href="/symfonyBlog/web/app_dev.php/Blog" ><span style="padding-left: 50px;padding-right: 50px" class="btn btn-info">&DoubleLeftArrow; Back</span></a>
+                           
+            </div><! --main blogbar-->
+            
+       
+                </div> 
+                
+            </div> 
+
+    
+    
+    {% endblock %}

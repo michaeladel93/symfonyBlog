@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+{% block title  %}
+    Admin Panel
+    {% endblock %}
+{% block body  %}
+
+          
+          <div class="container">
+              <div class="row">
+            <div col="col-lg-6">
+                <a href="/symfonyBlog/web/app_dev.php/addPost" ><span class="btn btn-success">Add Post &raquo;</span></a>
+            </div>     
+       
+              
+              </div>
+               <div class="table-responsive">  
+    <table class="table table-striped table-hover">
+        <tr>
+            <th style="wdith:15%">title</th>
+            <th style="wdith:15%">Image</th>
+            <th style="wdith:5%">date</th>
+            <th style="wdith:5%">Category</th>
+            <th style="wdith:5%">Posted_by</th>
+            
+            <th style="wdith:40%">Post</th>
+            <th style="width:5%">Delete</th>
+        </tr>
+        {% for post in posts %}
+            <tr >
+                <td>{{post.postTitle}}</td>
+                <td><img class="img-responsive img-rounded" style="max-height:110px" src="{{asset('upload/' ~ post.postImg)}}" ></td>
+                <td>{{post.postDate}}</td>
+                <td>{{post.postDetails}}</td>
+                <td> {{  post.postedBy }}</td>
+               
+                <td> {{  post.postData }}</td>
+                <td> <a href="/symfonyBlog/web/app_dev.php/admin/delete/deletepost/{{post.id}}" ><span class="btn btn-danger">&Chi;</span></a></td>
+            </tr>
+        {% endfor %}
+    </table>
+      </div>     
+          </div>
+    {% endblock %}

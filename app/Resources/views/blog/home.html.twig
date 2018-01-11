@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+{% block title  %}
+    blog Page
+    {% endblock %}
+{% block body  %}
+    
+      <div class="container">
+        <div class="blog-header">
+    <h1> A complete responsive Blog</h1>
+            <p class="lead">complete blog using the php course</p>
+        </div>
+        <div class="row">
+        <div class="col-sm-8"><! --mainbolg-- >
+            {% for post in posts %}
+           
+            <div class="blogpost thumbnail">
+               
+			<img class="img-responsive img-rounded" style="max-height:310px" src="{{asset('upload/' ~ post.postImg)}}" >
+			
+                <div class="caption">
+			<h1 id="heading"> {{post.postTitle}}</h1>
+		<p class="description">Category:{{post.postDetails}} &nbsp; Published on
+		{{post.postDate}}
+		</p>
+        <p class="post"> 
+                  {{  post.postData|length > 50 ? post.postData|slice(0, 50) ~ '...' : post.postData }}</p>
+		
+		</div>
+                <a href="/symfonyBlog/web/app_dev.php/Blog/fullpost/{{post.id}}" ><span class="btn btn-info">Read More  &raquo;</span></a>
+            </div> 
+            <br>
+            {% endfor %}
+<br><br>
+            </div><! --main blogbar-->
+            
+                
+                </div> 
+                
+            </div> 
+    
+    
+    {% endblock %}
